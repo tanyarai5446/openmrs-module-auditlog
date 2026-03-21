@@ -23,3 +23,13 @@ After you've configured the module and you create, update or purge(delete foreve
 ## Alternatives to the module
 - Use triggers to create the audit trail or the built-in logging mechanism of your DB.
 - Update events module to be based on debezium and embed the auditlog feature in the events module, but with debezium there would be no way to know the user that made the change
+---
+
+### **Running Tests on Java 9 and Above**
+If you are developing on a modern environment (Java 9 through Java 25+), you may encounter `java.lang.reflect.InaccessibleObjectException` due to Strong Encapsulation. 
+
+To resolve this in IntelliJ or Maven, add the following **VM Options** to your JUnit Run Configuration:
+
+`--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED`
+
+This allows the test framework to access necessary internal reflection utilities used by the legacy OpenMRS testing core.
